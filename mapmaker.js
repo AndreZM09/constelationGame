@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const mapname = document.getElementById('name_map').value;
       if (mapname.trim() !== "") {
-        mapa.nombre = mapname;
+        mapa.nombre = mapname; // se guarda el nombre en el mapa
       } else {
         alert("Ingrese un nombre");
         return; // Salir de la función si no se proporciona un nombre
@@ -158,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(mapa.lineas);
       console.log(mapa.puntos);
       
+      // escibe el nombre del mapa y un objeto con puntos y líneas como entrada y luego guarda la informacion en la base de datos
       try {
         const respuesta = await fetch('/guardarMapa', {
           method: 'POST',

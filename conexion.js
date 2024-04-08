@@ -14,7 +14,7 @@ async function saveMapToDB(mapa) {
   const MapaModel = mongoose.model('Mapa', require('./mapaSchema'));
   try {
     const nuevoMapa = new MapaModel(mapa);
-    await nuevoMapa.save();
+    await nuevoMapa.save(); // Se sube el mapa a la base de datos
     console.log('¡Mapa guardado con éxito!');
   } catch (err) {
     console.error('Error al guardar el mapa:', err);

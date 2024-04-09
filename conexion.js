@@ -23,3 +23,10 @@ async function saveMapToDB(mapa) {
 }
   
   module.exports = { saveMapToDB }; // exportamos la funcion
+//funcion para mostrar el contenido
+const mostrarMapa = async ()=>{
+  const MapaModel = mongoose.model('Mapa', require('./mapaSchema'));
+  const nombre = await MapaModel.find();  // indicar el schema 
+  console.log(nombre)
+}
+mostrarMapa();

@@ -4,51 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galaxy Game Menu</title>
-  <style>
-    body {
-    background: #000 url(//cssanimation.rocks/demo/starwars/images/bg.jpg);
-    color: #fff;
-   
-  }
-  header {
-    text-align: center;
-    margin-top: 50px;
-  }
-  .logo img {
-    width: 200px;
-  }
-  .main {
-    text-align: center;
-  }
-  .galaxy-bg {
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  #start-btn {
-    font-size: 20px;
-    padding: 15px 30px;
-    background-color: #000;
-    color: #fff;
-    border: 2px solid #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  #start-btn:hover {
-    background-color: #fff;
-    color: #000;
-  }
-  </style>
+  <link rel="stylesheet" href="./estilos/estilos-index.css">
 </head>
 <body>
   <header class="logo">
     <h1>Constelation Game</h1>
+    <!-- 
+    <div class="mapas">
+      <button class="botones"><a href="mapas.html">Mapas</a></button>
+    </div>-->
   </header>
   <main>
+    <!-- Aqui vamos a mostrar mapas o creador de mapas *actualizacion*-->
     <div class="galaxy-bg">
-      <button id="start-btn"><a href="constelation.html">Start</a></button>
+      <button id="start-btn"><a href="constelation.html" textdecoration="none">Start</a></button>
     </div>
   </main>
   <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>

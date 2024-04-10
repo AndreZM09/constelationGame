@@ -28,7 +28,9 @@ app.get('/', (req, res) => {
 app.get('/mapmaker', (req, res) => {
     res.sendFile(path.join(__dirname, 'mapmaker.html'));
   });
-
+app.get('/mapas', (req, res) => {
+    res.sendFile(path.join(__dirname, 'mapas.html'));
+});
 app.post('/guardarMapa', async (req, res) => {
     try {
         await saveMapToDB(req.body);

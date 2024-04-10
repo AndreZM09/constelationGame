@@ -46,6 +46,7 @@ function drawNodes(ctx, nodes) {
 function drawArcos(ctx, arcos) {
   for (let index = 0; index < arcos.length; index++) {
     const arco = arcos[index];
+    ctx.lineWidth=1;
     ctx.moveTo(arco.node1.x, arco.node1.y);
     ctx.lineTo(arco.node2.x, arco.node2.y);
     ctx.strokeStyle = "white";

@@ -38,6 +38,7 @@ app.post('/guardarMapa', async (req, res) => {
         res.status(500).json({ mensaje: 'Error al guardar el mapa' });
     }
 });
+//Crear la peticion para la muestra de datos en caso de ser necesario 
 
 server.listen(port, ()=>{
     console.log(`El servidor está funcionando en http://localhost:${port}`);

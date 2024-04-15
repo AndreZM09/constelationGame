@@ -13,9 +13,8 @@ const registro_mapa = async function(req, res) {
 
 const obtenerInfoMapa = async function(req, res) {
   try {
-    const mapas = await mapaModel.find({}, 'nombre');
-    const nombres = mapas.map(mapa => mapa.nombre);
-    res.status(200).json({ nombres });
+    const mapas = await mapaModel.find({});
+    res.status(200).json({ mapas });
   } catch (error) {
     console.error('Error al obtener los nombres de los mapas:', error);
     res.status(500).json({ error: 'Error al obtener los nombres de los mapas' });

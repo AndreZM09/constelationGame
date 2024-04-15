@@ -9,9 +9,19 @@ const io = new Server(server)
 const { Socket } = require('dgram');
 const path = require('path');
 
-const saveMapToDB = require('./conexion').saveMapToDB
+var mongoose = require('mongoose')
+var mapaRuta = require('./routes/mapas')
+
 app.use(express.static(path.resolve("")))
 app.use(express.json());
+
+mongoose.connect('mongodb://127.0.0.1:27017/datosMapa')
+    .then(() => console.log('Conexión a la base de datos establecida'))
+    .catch((err) => console.error('Error al conectar a la base de datos:', err));
+
+server.listen(port, ()=>{
+    console.log(`El servidor está funcionando en http://localhost:${port}`);
+})
 
 io.on('connection', (socket) => {
     console.log('usuario conectado');
@@ -28,21 +38,5 @@ app.get('/', (req, res) => {
 app.get('/mapmaker', (req, res) => {
     res.sendFile(path.join(__dirname, 'mapmaker.html'));
   });
-app.get('/mapas', (req, res) => {
-    res.sendFile(path.join(__dirname, 'mapas.html'));
-});
-app.post('/guardarMapa', async (req, res) => {
-    try {
-        await saveMapToDB(req.body);
-        res.status(200).json({ mensaje: 'Mapa guardado con éxito' });
-    } catch (err) {
-        console.error('Error al guardar mapa:', err);
-        res.status(500).json({ mensaje: 'Error al guardar el mapa' });
-    }
-});
-//Crear la peticion para la muestra de datos en caso de ser necesario 
 
-server.listen(port, ()=>{
-    console.log(`El servidor está funcionando en http://localhost:${port}`);
-})
-require('./conexion');
+app.use('/api', mapaRuta)

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+var schema = mongoose.Schema
 
-const mapaSchema = new mongoose.Schema({
+var mapaSchema = schema({
   nombre:{
     type: String,
     default: "",
@@ -35,4 +36,4 @@ const mapaSchema = new mongoose.Schema({
   }],
 });
 
-module.exports = mapaSchema;
+module.exports = mongoose.model('mapa', mapaSchema);

@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // escibe el nombre del mapa y un objeto con puntos y líneas como entrada y luego guarda la informacion en la base de datos
       try {
-        const respuesta = await fetch('/guardarMapa', {
+        const respuesta = await fetch('/api/guardarMapa', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(mapa),
@@ -180,6 +180,5 @@ document.addEventListener('DOMContentLoaded', () => {
     btnDelet.addEventListener('click', ()=>{
         context.clearRect(0, 0, canvas.width, canvas.height);
     });
-    const bd = require('./conexion');
-
+  
 });

@@ -1,6 +1,7 @@
-let nodes = [];
-let selectedNode = null;
-let arcos = [];
+let nodes = []; // array de los nodos (puntos)
+let selectedNode = null; // indica si hay un nodo seleccionado
+let arcos = [];// array de las lineas 
+// objeto mapa  que almacena los parametros de los mapas nombre, puntos y lineas 
 const mapa = {
     nombre: [],
     puntos: [
@@ -22,7 +23,13 @@ const mapa = {
       }
     ]
   };
-  
+/**
+ * 
+ * @param {number} x 
+ * @param {number} y 
+ * @param {number[]} nodes 
+ * @returns {(number | null)} retorna el nodo o de ser contrario null
+ */
 function getNodeAt(x, y, nodes) {
   for (let index = 0; index < nodes.length; index++) {
     const node = nodes[index];
@@ -37,7 +44,11 @@ function getNodeAt(x, y, nodes) {
   }
   return null;
 }
-
+/**
+ * 
+ * @param {object} contexto del canvas ctx 
+ * @param {number[]} nodes 
+ */
 function drawNodes(ctx, nodes) {
   for (let index = 0; index < nodes.length; index++) {
     const node = nodes[index];
@@ -63,7 +74,11 @@ function drawNodes(ctx, nodes) {
 
   }
 }
-
+/**
+ * 
+ * @param {object} ctx 
+ * @param {number[]} arcos 
+ */
 function drawArcos(ctx, arcos) {
   for (let index = 0; index < arcos.length; index++) {
     const arco = arcos[index];
@@ -76,15 +91,17 @@ function drawArcos(ctx, arcos) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById("canvas");
-  const context = canvas.getContext("2d");
-  canvas.style.border = "2px solid white";
+  const canvas = document.getElementById("canvas");// instncia del canvas
+  const context = canvas.getContext("2d");// contexto del canvas
+
+  canvas.style.border = "2px solid white";// parametros de estilo del canva
   //Evento para crear y conectar puntoa con lineas
   canvas.addEventListener("click", (e) => {
-    let x = e.clientX - canvas.offsetLeft;
+    // instanciando coordenadas x, y  
+    let x = e.clientX - canvas.offsetLeft; 
     let y = e.clientY - canvas.offsetTop;
 
-    let tempNode = getNodeAt(x, y, nodes);
+    let tempNode = getNodeAt(x, y, nodes);// definimos un node temporal
     
     if (selectedNode !== null && tempNode === null) {
         selectedNode = tempNode;
@@ -100,21 +117,22 @@ document.addEventListener('DOMContentLoaded', () => {
         nodes.push({ x, y });
     }
   
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, canvas.width, canvas.height); // limpiamos el canvas
   
     if (selectedNode !== null && tempNode !== null) {
         arcos.push({ node1: selectedNode, node2: tempNode });
         selectedNode = null;
         tempNode = null;
     }
+    // pasamos parametros a las funciones definidas
     drawArcos(context, arcos);
     drawNodes(context, nodes);
-    //console.log("x", x,"y", y);    
+      
   });
   //Eveneto para guardar nombre 
     const btn_nombre=document.getElementById('nombre');
     btn_nombre.addEventListener('click', ()=>{
-        let mapname=document.getElementById('name_map').value;
+        let mapname=document.getElementById('name_map').value; // extraemos los valores almacenados en el elemento html
         if(mapname.trim()!=""){
             mapa.nombre = mapname;
             alert("Nombre guardado")

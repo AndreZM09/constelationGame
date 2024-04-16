@@ -1,19 +1,25 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/api/nombresMapas');
-        if (!response.ok) {
+        //Instanciando solicitud fetch para recibir los datos del servidor
+        const response = await fetch('/api/nombresMapas'); 
+        if (!response.ok) { // response no pudo conectar
             throw new Error('No se pudo obtener la lista de nombres de mapas');
         }
-        const data = await response.json();
-        const mapas = data.mapas;
+        // instancias
+        const data = await response.json(); // convertimos a JSON los parametros recibidos 
+        const mapas = data.mapas; // obtenemos la lista de los mapas 
 
         // Obtener el contenedor donde se mostrarán los mapas
         const contenedor = document.querySelector('.contenedor');
 
         // Función para renderizar un mapa dado
+        /**
+         * 
+         * @param {object} mapa 
+         */
         const renderizarMapa = (mapa) => {
             let maxX = 0, maxY = 0;
-
+            // recorriendo el objeto mapa para dibujar las coordenadas de los elementos 
             mapa.puntos.forEach(punto => {
                 maxX = Math.max(maxX, punto.x);
                 maxY = Math.max(maxY, punto.y);
@@ -25,16 +31,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Crear lienzo para el mapa
             const canvas = document.createElement('canvas');
-            canvas.width = maxX + 20; // Agregar un pequeño margen
-            canvas.height = maxY + 20; // Agregar un pequeño margen
+            canvas.width = window.innerWidth; // Agregar un pequeño margen
+            canvas.height = window.innerHeight; // Agregar un pequeño margen
+            canvas.style.border = "2px solid white";
             const ctx = canvas.getContext('2d');
 
-            // Dibujar líneas
-            ctx.strokeStyle = 'white';
+            // Dibujar líneas   
             mapa.lineas.forEach(linea => {
                 ctx.beginPath();
+                ctx.lineWidth=1;
                 ctx.moveTo(linea.x1, linea.y1);
                 ctx.lineTo(linea.x2, linea.y2);
+                ctx.strokeStyle="red";
                 ctx.stroke();
             });
 

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        //Instanciando solicitud fetch para recibir los datos del servidor
+        // Instanciando solicitud fetch para recibir los datos del servidor
         const response = await fetch('/api/nombresMapas'); 
         if (!response.ok) { // response no pudo conectar
             throw new Error('No se pudo obtener la lista de nombres de mapas');
@@ -13,10 +13,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const contenedor = document.querySelector('.contenedor');
 
         // Función para renderizar un mapa dado
-        /**
-         * 
-         * @param {object} mapa 
-         */
         const renderizarMapa = (mapa) => {
             let maxX = 0, maxY = 0;
             // recorriendo el objeto mapa para dibujar las coordenadas de los elementos 
@@ -88,9 +84,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Agregar botones de navegación fuera del contenedor del lienzo
+        // Botón para seleccionar mapa
+        const botonSeleccionarMapa = document.createElement('button');
+        botonSeleccionarMapa.textContent = 'Seleccionar mapa';
+        botonSeleccionarMapa.addEventListener('click', () => {
+            // Pasar los datos del mapa seleccionado a constelation.js
+            const mapaSeleccionado = mapas[indiceMapaActual];
+            localStorage.setItem('mapaSeleccionado', JSON.stringify(mapaSeleccionado));
+
+            // Redireccionar a constelation.html
+            window.location.href = 'constelation.html';
+        });
+        
+        // Agregar botones de navegación y de selección fuera del contenedor del lienzo
         document.body.insertBefore(botonIzquierda, contenedor);
         document.body.insertBefore(botonDerecha, contenedor.nextSibling);
+        document.body.appendChild(botonSeleccionarMapa);
 
     } catch (error) {
         console.error('Error al obtener los nombres de los mapas:', error);

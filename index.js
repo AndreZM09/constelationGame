@@ -83,13 +83,45 @@ window.addEventListener('DOMContentLoaded', () => {
     //Obtenemos coordenadas del click
     let x = event.offsetX; // coordenada x
     let y = event.offsetY; // coordenada y
+    let tempNode = getNodeAt(x,y, nodes);
+
     //Dibujamos el circulo
-    ctx.beginPath();
-    ctx.arc(x, y, 2, 0, 2 * Math.PI);
-    ctx.fillStyle = "white";
-    ctx.fill();
+    //ctx.beginPath();
+    //ctx.arc(x, y, 2, 0, 2 * Math.PI);
+    //ctx.fillStyle = "white";
+    //ctx.fill();
+    if (selectedNode !== null && tempNode === null){
+      selectedNode = tempNode;
+      tempNode = null;
+    }
+    if (selectedNode === null){
+      selectedNode = tempNode;
+      tempNode = null;
+    }
+    if (selectedNode === null) {
+      nodes.push({ x, y });
+    }
+    ctx.clearRect(0, 0, canva.width, canva.heigth);
+    if(selectedNode !== null && tempNode !== null){
+      arcos.push({ node1: selectedNode, node2: tempNode });
+      selectedNode= null;
+      tempNode= null;
+    }
+    drawArcos(ctx, arcos);
+    drawNodes(ctx, nodes);
+
      //Emitir datos al server 
     socket.emit('Dibuja_puntos', {puntos: [x , y]});
+    //Emitir datos de las lineas al server
+    for(let i = 0; i <arcos.length; i++){
+      x1 = arcos[i].node1.x;
+      y1 = arcos[i].node1.y;
+      x2 = arcos[i].node2.x;
+      y2 = arcos[i].node2.y;
+      console.log(x1, x2, y1, y2);
+
+      socket.emit('Dibuja_lineas', {lineas: [x1, y1, x2, y2]});
+    }
   
   });
   // Escuchando los datos que reenvia el servidor 
@@ -100,6 +132,17 @@ window.addEventListener('DOMContentLoaded', () => {
     ctx.arc(puntos[0], puntos[1], 2,0,2*Math.PI );
     ctx.fillStyle = "white";
     ctx.fill();
+  });
+  //dibujando lineas
+  socket.on('Dibuja_lineas', data =>{
+    for (let index = 0; index < data.length; index++) {
+      const arco = data[index];
+      ctx.lineWidth=1;
+      ctx.moveTo(arco.node1.x, arco.node1.y);
+      ctx.lineTo(arco.node2.x, arco.node2.y);
+      ctx.strokeStyle = "white";
+      ctx.stroke();
+    }
   });
 });
   

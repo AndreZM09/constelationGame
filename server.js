@@ -29,6 +29,10 @@ io.on('connection', (socket) => {
         console.log(data);
         io.emit('Dibuja_puntos', data);
     });
+    socket.on('Dibuja_lineas', data =>{
+        console.log(data);
+        io.emit('Dibuja_lineas, data');
+    });
 })
 
 app.get('/', (req, res) => {

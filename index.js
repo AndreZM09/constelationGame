@@ -118,9 +118,10 @@ window.addEventListener('DOMContentLoaded', () => {
       y1 = arcos[i].node1.y;
       x2 = arcos[i].node2.x;
       y2 = arcos[i].node2.y;
-      console.log(x1, x2, y1, y2);
 
       socket.emit('Dibuja_lineas', {lineas: [x1, y1, x2, y2]});
+      console.log("Datos emitidos")
+      console.log(x1, x2, y1, y2);
     }
   
   });
@@ -134,13 +135,16 @@ window.addEventListener('DOMContentLoaded', () => {
     ctx.fill();
   });
   //dibujando lineas
-  socket.on('Dibuja_lineas', data =>{
-    for (let index = 0; index < data.length; index++) {
-      const arco = data[index];
-      ctx.lineWidth=1;
-      ctx.moveTo(arco.node1.x, arco.node1.y);
-      ctx.lineTo(arco.node2.x, arco.node2.y);
-      ctx.strokeStyle = "white";
+  //REVISAR EL MODO EN EL QUE SE RECORRE EL ARRAY
+  socket.on('Dibuja_lineas', data => {
+    console.log(data); 
+    ctx.beginPath();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "white"; 
+    ctx.moveTo(data[0], data[1]); 
+    for (let index = 2; index < data.length; index += 2) {
+      ctx.lineTo(data[index], data[index + 1]);
+      console.log("Línea dibujada"); 
       ctx.stroke();
     }
   });

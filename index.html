@@ -7,16 +7,31 @@
   <link rel="stylesheet" href="./estilos/estilos-index.css">
 </head>
 <body>
-  <header class="logo">
-    <h1>Constelation Game</h1> 
+  <header class="header">
+    <a href="#" class="logo">Asterism</a>
+    <nav class="barra">
+      <button id="start-btn" class="botones"><a href="mapmaker.html" class="boton"> Crear Mapa </a></button>
+      <button id="start-btn" class="botones"><a href="mapas.html" class="boton"> Seleccionar Mapa </a></button>
+    </nav>
   </header>
-  <main>
-    <!-- Aqui vamos a mostrar mapas o creador de mapas *actualizacion*-->
-    <div class="galaxy-bg">
-      <button id="start-btn" class="botones"><a href="mapas.html">Seleccionar Mapa</a></button>
-      <button id="start-btn" class="botones"><a href="mapmaker.html">Crear Mapa</a></button>
-    </div>
-  </main>
+  <div class="configuracion">
+    <form>
+      <select>
+        <op selected>Seleccionar grupo de alumnos</op>
+        <option value="1">Seleccionar grupo de alumnos</option>
+        <op selected>Seleccionar numero de rondas</op>
+      </select>
+      <select>
+        <op selected>Seleccionar mapa</op>
+        <option value="1">Seleccionar mapa</option>
+      </select>
+      <select>
+        <op selected>Seleccionar numero de rondas</op>
+        <option value="1">Seleccionar numero de rondas</option>
+      </select>
+      <button id="start-btn" class="botones"><a class="boton"> Empezar juego </a></button>
+    </form>
+  </div>
   <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 </body>
 </html>

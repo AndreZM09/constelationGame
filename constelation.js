@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             // Dibujar líneas
-            ctx.strokeStyle = 'red';
+            ctx.strokeStyle = 'white';
             mapaSeleccionado.lineas.forEach(linea => {
                 ctx.beginPath();
                 ctx.moveTo(linea.x1, linea.y1);
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             // Dibujar puntos
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = 'white';
             mapaSeleccionado.puntos.forEach(punto => {
                 ctx.beginPath();
                 ctx.arc(punto.x, punto.y, 3, 0, Math.PI * 2);

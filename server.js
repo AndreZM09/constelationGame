@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
     });
     socket.on('Dibuja_lineas', data =>{
         console.log(data);
-        io.emit('Dibuja_lineas, data');
+        io.emit('Dibuja_lineas', data);
     });
 })
 

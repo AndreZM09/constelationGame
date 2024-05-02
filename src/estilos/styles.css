@@ -1,0 +1,38 @@
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif; /* Fuente moderna por defecto */
+    margin: 0; /* Elimina margen del body */
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between; /* Elementos distribuidos */
+    align-items: center;
+    padding: 1rem; /* Margen interno */
+    background-color: #212121; /* Color de fondo oscuro */
+  }
+  
+  .header h1 {
+    font-size: 2rem; /* Tamaño de fuente para el título */
+    margin: 0; /* Elimina margen del título */
+  }
+  
+  .controles {
+    display: flex;
+  }
+  
+  .controles button {
+    margin-left: 1rem; /* Margen entre botones */
+    padding: 0.5rem 1rem; /* Margen interno de los botones */
+    border: none; /* Elimina borde por defecto */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #428bca; /* Color de fondo de los botones */
+    color: #fff; /* Color de texto de los botones */
+    cursor: pointer; /* Indica interacción al pasar el mouse */
+  }
+  
+  .controles button:hover { /* Efecto al pasar el mouse */
+    background-color: #357ebd;
+  }
+  

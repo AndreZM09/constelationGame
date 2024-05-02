@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxy Game Menu</title>
+  <link rel="stylesheet" href="../estilos/estilos-index.css">
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">Asterism</a>
+    <nav class="barra">
+      <button id="start-btn" class="botones"><a href="../vista/mapmaker.html" class="boton"> Crear Mapa </a></button>
+      <button id="start-btn" class="botones"><a href="../vista/mapas.html" class="boton"> Seleccionar Mapa </a></button>
+    </nav>
+  </header>
+  <div class="configuracion">
+    <form>
+      <select>
+        <op selected>Seleccionar grupo de alumnos</op>
+        <option value="1">Seleccionar grupo de alumnos</option>
+        <op selected>Seleccionar numero de rondas</op>
+      </select>
+      <select>
+        <op selected>Seleccionar mapa</op>
+        <option value="1">Seleccionar mapa</option>
+      </select>
+      <select>
+        <op selected>Seleccionar numero de rondas</op>
+        <option value="1">Seleccionar numero de rondas</option>
+      </select>
+      <button id="start-btn" class="botones"><a class="boton"> Empezar juego </a></button>
+    </form>
+  </div>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</body>
+</html>

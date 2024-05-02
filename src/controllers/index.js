@@ -137,13 +137,18 @@ window.addEventListener('DOMContentLoaded', () => {
   //dibujando lineas
   //REVISAR EL MODO EN EL QUE SE RECORRE EL ARRAY
   socket.on('Dibuja_lineas', data => {
-    console.log(data); 
-    ctx.beginPath();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "white"; 
-    ctx.moveTo(data[0], data[1]); 
-    for (let index = 2; index < data.length; index += 2) {
-      ctx.lineTo(data[index], data[index + 1]);
+    const linea= data.lineas;
+    console.log(data);  
+    for (let index = 0; index < linea.length; index += 2) {
+      const x1=linea[index]
+      const y1=linea[index+1]
+      const x2=linea[index+2]
+      const y2=linea[index+3]
+      ctx.beginPath();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "white";
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
       console.log("Línea dibujada"); 
       ctx.stroke();
     }

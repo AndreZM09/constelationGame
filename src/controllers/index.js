@@ -73,13 +73,13 @@ function drawArcos(ctx, arcos) {
   }
 }
 /**
- * 
+ * @param {object} ctx  contexto del canvas
  * @param {number[]} linea 
  * Funcion para calcular la distancia de las lineas para dar una puntuacion 
  * usaremos distancia euclidiana para saber la longitud de las lineas
  * en base a los puntos dados del array
  */
-function puntuacion(linea){
+function puntuacion(ctx, linea){
   console.log("arco", linea)
   let dist = 0;
   for (let i =0; i<linea.length; i++){
@@ -87,7 +87,11 @@ function puntuacion(linea){
     dist =Math.sqrt(Math.pow(arco.node2.x - arco.node1.x, 2) + Math.pow(arco.node2.y - arco.node1.y, 2)); 
     
   };
-  alert(dist)
+  ctx.font = "20px Arial";
+  //ctx.fillText =("Puntuacion: "+ dist, 1280, 600);
+  ctx.fillText("Hello World!: "+ dist, 10, 60);
+  ctx.fillStyle="red"
+  ctx.fill();
 };
 window.addEventListener('DOMContentLoaded', () => {
   const socket = io(); // instancia del socket
@@ -122,7 +126,7 @@ window.addEventListener('DOMContentLoaded', () => {
       arcos.push({ node1: selectedNode, node2: tempNode });
       selectedNode= null;
       tempNode= null;
-      puntuacion(arcos)
+      puntuacion(ctx, arcos)
     }
     drawArcos(ctx, arcos);
     drawNodes(ctx, nodes);

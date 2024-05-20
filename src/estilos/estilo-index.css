@@ -1,0 +1,25 @@
+.body {
+    background-color: #000;
+}
+.logo h1 {
+    color: aqua;
+}
+#wrapper {
+    position: relative;
+    border: 1px solid #9C9898;
+    width: 578px;
+    height: 200px;
+}
+
+#buttonWrapper {
+    position: absolute;
+    width: 30px;
+    top: 20px;
+    right: 20px;
+}
+
+input[type="button"] {
+    padding: 5px;
+    width: 30px;
+    margin: 0px 0px 2px 0px;
+}
